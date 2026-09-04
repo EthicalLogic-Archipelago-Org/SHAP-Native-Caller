@@ -23,7 +23,7 @@ jobs:
           generator: Ninja
           build-dir: output
           options: |
-            DCMAKE_TOOLCHAIN_FILE=cmake/toolchains/mingw32-w64.cmake
+            CMAKE_TOOLCHAIN_FILE=cmake/toolchains/mingw32-w64.cmake
 
       - name: Grab Artifact
         uses: actions/upload-artifact@v7
