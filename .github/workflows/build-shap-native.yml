@@ -1,0 +1,32 @@
+name: Build SHAP Native Caller
+
+on:
+  push:
+  pull_request:
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+
+
+    steps:
+      - uses: actions/checkout@v7
+
+      - name: Set up MinGW
+        uses: egor-tensin/setup-mingw@v3
+        with:
+          platform: x86
+
+      - name: CMake Build
+        uses: threeal/cmake-action@v2.1.0
+        with:
+          generator: Ninja
+          build-dir: output
+          options: |
+            DCMAKE_TOOLCHAIN_FILE=cmake/toolchains/mingw32-w64.cmake
+
+      - name: Grab Artifact
+        uses: actions/upload-artifact@v7
+        with:
+          name: SHAPNativeCaller
+          path: output/SHAPNativeCaller.dll
