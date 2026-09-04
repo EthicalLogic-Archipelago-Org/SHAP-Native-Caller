@@ -1,0 +1,35 @@
+name: Build and Make Release
+
+on:
+  push:
+    tags:
+      - "V*"
+
+jobs:
+  build-and-release:
+    runs-on: ubuntu-latest
+
+
+    steps:
+      - uses: actions/checkout@v7
+
+      - name: Set up MinGW
+        uses: egor-tensin/setup-mingw@v3
+        with:
+          platform: x86
+
+      - name: CMake Build
+        uses: threeal/cmake-action@v2.1.0
+        with:
+          generator: Ninja
+          build-dir: output
+          options: |
+            CMAKE_TOOLCHAIN_FILE=cmake/toolchains/mingw32-w64.cmake
+            
+
+      - name: Create Release
+        uses: softprops/action-gh-release@v3
+        with:
+          files: |
+            output/SHAPNativeCaller.dll
+            LICENSE
