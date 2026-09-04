@@ -1,0 +1,14 @@
+//
+// Created by ethicallogic on 9/2/26.
+//
+
+#ifndef SHAP_NATIVE_CALLER_SHAPNATIVECALLER_H
+#define SHAP_NATIVE_CALLER_SHAPNATIVECALLER_H
+
+
+class SHAPNativeCaller
+{
+};
+
+
+#endif //SHAP_NATIVE_CALLER_SHAPNATIVECALLER_H
